@@ -1,6 +1,16 @@
 import { ethers } from "hardhat";
 import { Ballot } from "../typechain-types";
 
+const PROPOSALS = ["Proposal 1", "Proposal 2", "Proposal 3"]
+
+function convertStringArrayToBytes32(array: string[]) {
+    const bytes32Array = [];
+    for (let index = 0; index < array.length; index++) {
+        bytes32Array.push(ethers.utils.formatBytes32String(array[index]));
+    }
+    return bytes32Array;
+}
+
 describe("Ballot", function () {
     // defining var here allows us to use globally for all tests
     let ballotContract: Ballot;
